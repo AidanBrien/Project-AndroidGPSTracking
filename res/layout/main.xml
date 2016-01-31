@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
         >
     <Button
             android:layout_width="wrap_content"
@@ -16,5 +16,12 @@
             android:text="Accelerometer"
             android:id="@+id/btnShowAccelerometer" android:layout_above="@+id/btnShowLocation"
             android:layout_centerHorizontal="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SMS"
+            android:id="@+id/btnShowSMS"
+            android:layout_marginTop="56dp"
+            android:layout_below="@+id/btnShowAccelerometer" android:layout_alignLeft="@+id/btnShowLocation"
+            android:layout_alignRight="@+id/btnShowAccelerometer"/>
 </RelativeLayout>
-

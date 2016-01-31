@@ -34,16 +34,16 @@ public class Accelerometer extends Activity implements SensorEventListener{
 
         acceleration = (TextView) findViewById(R.id.acceleration);
 
-        btnGoHome = (Button) findViewById(R.id.btnGoHome);
-        btnGoHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent myIntentA2 = new Intent(Accelerometer.this, AndroidGPSTrackingActivity.class);
-
-                startActivity(myIntentA2);
-
-            }
-        });
+//        btnGoHome = (Button) findViewById(R.id.btnGoHome);
+//        btnGoHome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                Intent myIntentA2 = new Intent(Accelerometer.this, AndroidGPSTrackingActivity.class);
+//
+//                startActivity(myIntentA2);
+//
+//            }
+//        });
     }
 
 

@@ -4,18 +4,20 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="10"/>
-    <application android:label="@string/app_name">
+    <application android:label="MY_FALL_DETC">
         <activity android:name="AndroidGPSTrackingActivity"
-                  android:label="@string/app_name">
+                  android:label="MY_FALL_DETC">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".Accelerometer"/>
+        <activity android:name=".MySMS"/>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
 </manifest> 

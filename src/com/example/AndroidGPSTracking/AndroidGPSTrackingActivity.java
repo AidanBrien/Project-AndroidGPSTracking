@@ -11,6 +11,7 @@ public class AndroidGPSTrackingActivity extends Activity {
 
     Button btnShowLocation;
     Button btnShowAccelerometer;
+    Button btnShowSMS;
 
     // GPSTracker class
     GPSTracker gps;
@@ -31,14 +32,14 @@ public class AndroidGPSTrackingActivity extends Activity {
                 gps = new GPSTracker(AndroidGPSTrackingActivity.this);
 
                 // check if GPS enabled
-                if(gps.canGetLocation()){
+                if (gps.canGetLocation()) {
 
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
 
                     // \n is for new line
                     Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     // can't get location
                     // GPS or Network is not enabled
                     // Ask user to enable GPS/network in settings
@@ -58,5 +59,18 @@ public class AndroidGPSTrackingActivity extends Activity {
 
             }
         });
+
+        btnShowSMS = (Button) findViewById(R.id.btnShowSMS);
+        btnShowSMS.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View arg0) {
+                Intent myIntentA1A2 = new Intent (AndroidGPSTrackingActivity.this,MySMS.class);
+
+                startActivity(myIntentA1A2);
+
+            }
+        });
+
     }
 }
