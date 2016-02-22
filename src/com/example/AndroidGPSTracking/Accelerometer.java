@@ -45,6 +45,17 @@ public class Accelerometer extends Activity implements SensorEventListener{
 //            }
 //        });
     }
+    //onResume() register the accelerometer for listening the events
+    protected void onResume() {
+        super.onResume();
+        sm.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    //onPause() unregister the accelerometer for stop listening the events
+    protected void onPause() {
+        super.onPause();
+        sm.unregisterListener(this);
+    }
 
 
     @Override
