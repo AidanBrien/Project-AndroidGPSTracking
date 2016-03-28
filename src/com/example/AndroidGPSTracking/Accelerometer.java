@@ -12,8 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.Vibrator;
-
-
+import android.widget.Toast;
 
 
 /**
@@ -54,7 +53,7 @@ public class Accelerometer extends Activity implements SensorEventListener{
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
             vibrateThreshold = accelerometer.getMaximumRange() / 1;
         } else {
-            // fai! we dont have an accelerometer!
+            // fail! we dont have an accelerometer!
         }
 
         //initialize vibration
@@ -121,11 +120,18 @@ public class Accelerometer extends Activity implements SensorEventListener{
 
     }
 
-    // if the change in the accelerometer value is big enough, then vibrate!
-    // our threshold is MaxValue/2
+    // if the change in the accelerometer value is big enough, then vibrate
+    // our threshold is MaxValue/1
     public void vibrate() {
         if ((deltaX > vibrateThreshold) || (deltaY > vibrateThreshold) || (deltaZ > vibrateThreshold)) {
-            v.vibrate(50);
+            v.vibrate(500);  //duration of vibration
+            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "+ "\nLong: " , Toast.LENGTH_LONG).show();
+//            AndroidGPSTrackingActivity agta = new AndroidGPSTrackingActivity();
+//            agta.btnShowLocation.performClick();
+
+//            Intent myIntentA1A2 = new Intent (Accelerometer.this,AndroidGPSTrackingActivity.class);
+//
+//            startActivity(myIntentA1A2);
         }
     }
 

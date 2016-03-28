@@ -16,6 +16,7 @@ public class AndroidGPSTrackingActivity extends Activity {
     // GPSTracker class
     GPSTracker gps;
 
+    //btnShowLocation.performClick();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
