@@ -24,11 +24,11 @@ public class MySMS extends Activity {
                 sendSMS("0857603133", "Hi You got a message!");
                 Toast.makeText(getApplicationContext(), "Your Message is sent", Toast.LENGTH_LONG).show();
             }
-
-            private void sendSMS(String phoneNumber, String message) {
-                SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage(phoneNumber, null, message, null, null);
-            }
         });
+    }
+
+    public void sendSMS(String phoneNumber, String message) {
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(phoneNumber, null, message, null, null);
     }
 }

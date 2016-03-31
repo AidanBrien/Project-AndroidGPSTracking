@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.os.Vibrator;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Created by g00289968 on 24/11/2015.
@@ -124,10 +127,24 @@ public class Accelerometer extends Activity implements SensorEventListener{
     // our threshold is MaxValue/1
     public void vibrate() {
         if ((deltaX > vibrateThreshold) || (deltaY > vibrateThreshold) || (deltaZ > vibrateThreshold)) {
-            v.vibrate(500);  //duration of vibration
+            v.vibrate(50);  //duration of vibration
             Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "+ "\nLong: " , Toast.LENGTH_LONG).show();
 //            AndroidGPSTrackingActivity agta = new AndroidGPSTrackingActivity();
-//            agta.btnShowLocation.performClick();
+            //****Check if Map is null******
+
+            Map<String, Double> locationMap = getLocation();
+            MySMS sms = new MySMS();
+            if (null != locationMap){
+                Double latitude = locationMap.get("latitude");
+                Double longitude = locationMap.get("longitude");
+                String message = "User has fallen at location: \nLat: " + latitude + "\nLong: " + longitude;
+                sms.sendSMS("0857603133", message);
+            }
+            else {
+                String message = "User has fallen at location unavailable";
+                sms.sendSMS("0857603133", message);
+            }
+
 
 //            Intent myIntentA1A2 = new Intent (Accelerometer.this,AndroidGPSTrackingActivity.class);
 //
@@ -162,5 +179,29 @@ public class Accelerometer extends Activity implements SensorEventListener{
             deltaZMax = deltaZ;
             maxZ.setText(Float.toString(deltaZMax));
         }
+    }
+    public Map getLocation(){
+        Map <String, Double> gpsMap = new HashMap<String, Double>();
+
+        GPSTracker gps = new GPSTracker(Accelerometer.this);
+
+        // check if GPS enabled
+        if (gps.canGetLocation()) {
+
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+            gpsMap.put("latitude", latitude);
+            gpsMap.put("longitude", longitude);
+            return gpsMap;
+
+            // \n is for new line
+//                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        } else {
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
+        }
+        return null;
     }
 }
