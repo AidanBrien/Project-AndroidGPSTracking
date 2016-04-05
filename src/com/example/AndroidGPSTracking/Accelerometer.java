@@ -128,7 +128,7 @@ public class Accelerometer extends Activity implements SensorEventListener{
     public void vibrate() {
         if ((deltaX > vibrateThreshold) || (deltaY > vibrateThreshold) || (deltaZ > vibrateThreshold)) {
             v.vibrate(50);  //duration of vibration
-            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: "+ "\nLong: " , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Fall Detected" , Toast.LENGTH_LONG).show();
 //            AndroidGPSTrackingActivity agta = new AndroidGPSTrackingActivity();
             //****Check if Map is null******
 
