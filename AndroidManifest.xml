@@ -12,8 +12,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Accelerometer"/>
-        <activity android:name=".MySMS"/>
+        <activity  android:screenOrientation="portrait" android:name=".Accelerometer"/>
+        <activity  android:screenOrientation="portrait" android:name=".MySMS"/>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
