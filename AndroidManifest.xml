@@ -4,7 +4,7 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="10"/>
-    <application android:label="Fall" android:icon="@drawable/FallLogo">
+    <application android:label="Fall" android:icon="@drawable/fall">
         <activity android:name="AndroidGPSTrackingActivity"
                   android:label="Fall">
             <intent-filter>

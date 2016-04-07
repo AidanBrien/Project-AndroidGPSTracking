@@ -8,21 +8,14 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Show Location"
-            android:id="@+id/btnShowLocation" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-            android:layout_marginBottom="245dp"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Accelerometer"
-            android:id="@+id/btnShowAccelerometer" android:layout_above="@+id/btnShowLocation"
-            android:layout_centerHorizontal="true"/>
+            android:id="@+id/btnShowAccelerometer"
+            android:layout_above="@+id/btnShowSMS" android:layout_centerHorizontal="true"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SMS"
             android:id="@+id/btnShowSMS"
-            android:layout_marginTop="56dp"
-            android:layout_below="@+id/btnShowAccelerometer" android:layout_alignLeft="@+id/btnShowLocation"
-            android:layout_alignRight="@+id/btnShowAccelerometer"/>
+            android:layout_alignParentBottom="true" android:layout_alignLeft="@+id/btnShowAccelerometer"
+            android:layout_marginBottom="223dp" android:layout_alignRight="@+id/btnShowAccelerometer"/>
 </RelativeLayout>
