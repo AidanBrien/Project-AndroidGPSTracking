@@ -4,9 +4,9 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="10"/>
-    <application android:label="MY_FALL_DETC">
+    <application android:label="Fall" android:icon="@drawable/FallLogo">
         <activity android:name="AndroidGPSTrackingActivity"
-                  android:label="MY_FALL_DETC">
+                  android:label="Fall">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
