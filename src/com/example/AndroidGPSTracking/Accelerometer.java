@@ -27,7 +27,7 @@ import java.util.Map;
  * Created by g00289968 on 24/11/2015.
  */
 public class Accelerometer extends Activity implements SensorEventListener{
-
+    String numbr = "0857603133";
     private float lastX, lastY, lastZ;
 
     private SensorManager sensorManager;
@@ -143,7 +143,7 @@ public class Accelerometer extends Activity implements SensorEventListener{
                 Double latitude = locationMap.get("latitude");
                 Double longitude = locationMap.get("longitude");
                 String message = "User has fallen at location: \nLat: " + latitude + "\nLong: " + longitude;
-                sms.sendSMS("0857603133", message);
+                sms.sendSMS(numbr, message);
 
                 System.out.println("Sending coordinates via http POST request");
                 try {
@@ -156,7 +156,7 @@ public class Accelerometer extends Activity implements SensorEventListener{
             }
             else {
                 String message = "User has fallen at location unavailable";
-                sms.sendSMS("0857603133", message);
+                sms.sendSMS(numbr, message);
             }
 
 
