@@ -55,13 +55,13 @@ public class Accelerometer extends Activity implements SensorEventListener{
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
-            // success! we have an accelerometer
+            //Accelerometer Detected
 
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-            vibrateThreshold = accelerometer.getMaximumRange() / 1;
+            vibrateThreshold = accelerometer.getMaximumRange() / 1.1f;
         } else {
-            // fail! we dont have an accelerometer!
+            // No Accelerometer
         }
 
         //initialize vibration
@@ -134,7 +134,6 @@ public class Accelerometer extends Activity implements SensorEventListener{
         if ((deltaX > vibrateThreshold) || (deltaY > vibrateThreshold) || (deltaZ > vibrateThreshold)) {
             v.vibrate(50);  //duration of vibration
             Toast.makeText(getApplicationContext(), "Fall Detected" , Toast.LENGTH_LONG).show();
-//            AndroidGPSTrackingActivity agta = new AndroidGPSTrackingActivity();
             //****Check if Map is null******
 
             Map<String, Double> locationMap = getLocation();
@@ -158,11 +157,6 @@ public class Accelerometer extends Activity implements SensorEventListener{
                 String message = "User has fallen at location unavailable";
                 sms.sendSMS(numbr, message);
             }
-
-
-//            Intent myIntentA1A2 = new Intent (Accelerometer.this,AndroidGPSTrackingActivity.class);
-//
-//            startActivity(myIntentA1A2);
         }
     }
 
@@ -208,8 +202,6 @@ public class Accelerometer extends Activity implements SensorEventListener{
             gpsMap.put("longitude", longitude);
             return gpsMap;
 
-            // \n is for new line
-//                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
         } else {
             // can't get location
             // GPS or Network is not enabled
@@ -226,7 +218,6 @@ public class Accelerometer extends Activity implements SensorEventListener{
 
         //add request header
         con.setRequestMethod("POST");
-        //con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
         String urlParameters = "USERID=" + userid + "&LATITUDE=" + latitude + "&LONGITUDE=" + longitude;
