@@ -15,6 +15,7 @@ public class AndroidGPSTrackingActivity extends Activity {
     Button btnShowLocation;
     Button btnShowAccelerometer;
     Button btnShowSMS;
+    Button btnShowSettings;
 
     // GPSTracker class
     GPSTracker gps;
@@ -70,6 +71,17 @@ public class AndroidGPSTrackingActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 Intent myIntentA1A2 = new Intent (AndroidGPSTrackingActivity.this,MySMS.class);
+
+                startActivity(myIntentA1A2);
+
+            }
+        });
+        btnShowSettings = (Button) findViewById(R.id.btnShowSettings);
+        btnShowSettings.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View arg0) {
+                Intent myIntentA1A2 = new Intent (AndroidGPSTrackingActivity.this,Settings.class);
 
                 startActivity(myIntentA1A2);
 

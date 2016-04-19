@@ -18,4 +18,11 @@
             android:id="@+id/btnShowSMS"
             android:layout_alignParentBottom="true" android:layout_alignLeft="@+id/btnShowAccelerometer"
             android:layout_marginBottom="223dp" android:layout_alignRight="@+id/btnShowAccelerometer"/>
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:id="@+id/btnShowSettings" android:layout_below="@+id/btnShowAccelerometer"
+            android:layout_toLeftOf="@+id/btnShowSMS" android:layout_marginTop="103dp"/>
 </RelativeLayout>
