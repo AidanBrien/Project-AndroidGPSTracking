@@ -16,19 +16,23 @@
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:ems="10"
-            android:id="@+id/editText"
-            android:layout_below="@+id/btnWifiOn" android:layout_alignParentLeft="true"/>
+            android:id="@+id/phoneNumberEnter"
+            android:text="50505059" android:layout_below="@+id/btnWifiOn" android:layout_alignLeft="@+id/phoneNumberEnter2"
+            android:layout_marginTop="45dp"/>
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Numbers"
+            android:id="@+id/btnSaveNumber1"
+            android:layout_below="@+id/phoneNumberEnter2" android:layout_centerHorizontal="true"
+            android:layout_marginTop="61dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_below="@+id/editText" android:layout_alignParentLeft="true"/>
-    <QuickContactBadge
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/quickContactBadge" android:layout_below="@+id/editText2"
-            android:layout_alignRight="@+id/editText2" android:layout_marginTop="47dp"/>
+            android:id="@+id/phoneNumberEnter2"
+            android:layout_below="@+id/phoneNumberEnter" android:layout_alignRight="@+id/btnWifiOn"/>
 
 </RelativeLayout>

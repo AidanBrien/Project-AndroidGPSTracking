@@ -14,12 +14,11 @@ import android.widget.TextView;
 import android.os.Vibrator;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -27,6 +26,7 @@ import java.util.Map;
  * Created by g00289968 on 24/11/2015.
  */
 public class Accelerometer extends Activity implements SensorEventListener{
+
     String numbr = "0857603133";
     private float lastX, lastY, lastZ;
 
@@ -141,21 +141,28 @@ public class Accelerometer extends Activity implements SensorEventListener{
             if (null != locationMap){
                 Double latitude = locationMap.get("latitude");
                 Double longitude = locationMap.get("longitude");
-                String message = "User has fallen at location: \nLat: " + latitude + "\nLong: " + longitude;
-                sms.sendSMS(numbr, message);
 
-                System.out.println("Sending coordinates via http POST request");
                 try {
+                    String[] contactsArray = readNumbersFromFile();
+                    String message = "User has fallen at location: \nLat: " + latitude + "\nLong: " + longitude;
+                    for(int i =0; i < contactsArray.length; i++){
+                        sms.sendSMS((contactsArray[i]), message);
+                    }
+                    System.out.println("Sending coordinates via http POST request");
+
                     GpsToServer(1, latitude, longitude);
                 }
                 catch (Exception e) {
                     System.out.println(e.getMessage());
-
                 }
             }
             else {
+                String[] contactsArray = readNumbersFromFile();
                 String message = "User has fallen at location unavailable";
-                sms.sendSMS(numbr, message);
+                for(int i =0; i < contactsArray.length; i++){
+                    sms.sendSMS((contactsArray[i]), message);
+                }
+               // sms.sendSMS(numbr, message);
             }
         }
     }
@@ -210,6 +217,26 @@ public class Accelerometer extends Activity implements SensorEventListener{
         }
         return null;
     }
+    private String[] readNumbersFromFile(){
+        String[] contactsArray;
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new
+                    File(getFilesDir() + File.separator + "MyFile.txt")));
+            String read;
+            read = bufferedReader.readLine();
+            contactsArray = read.split(",");
+            System.out.println("nums from file = " + read);
+            bufferedReader.close();
+
+            return contactsArray;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            return null;
+        }
+    }
+
     private void GpsToServer(int userid,double latitude,double longitude)throws Exception{
 
         String url = "http://140.203.204.78/niallcsit/writeGPSToFile.php";
