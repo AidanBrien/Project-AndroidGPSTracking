@@ -21,7 +21,7 @@ public class MySMS extends Activity {
         btnSendSMS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendSMS("0857603133", "Hi You got a message!");
+                sendSMS("0857603133", "I have fallen, Please send help!");
                 Toast.makeText(getApplicationContext(), "Your Message is sent", Toast.LENGTH_LONG).show();
             }
         });

@@ -3,6 +3,7 @@ package com.example.AndroidGPSTracking;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -70,9 +71,11 @@ public class AndroidGPSTrackingActivity extends Activity {
         {
             @Override
             public void onClick(View arg0) {
-                Intent myIntentA1A2 = new Intent (AndroidGPSTrackingActivity.this,MySMS.class);
-
-                startActivity(myIntentA1A2);
+//                Intent myIntentA1A2 = new Intent (AndroidGPSTrackingActivity.this,MySMS.class);
+//
+//                startActivity(myIntentA1A2);
+                sendSMS("0857603133", "I have fallen, Please send help!");
+                Toast.makeText(getApplicationContext(), "Your Message is sent", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -87,6 +90,9 @@ public class AndroidGPSTrackingActivity extends Activity {
 
             }
         });
-
+    }
+    public void sendSMS(String phoneNumber, String message) {
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(phoneNumber, null, message, null, null);
     }
 }

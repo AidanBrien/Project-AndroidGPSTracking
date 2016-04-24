@@ -27,7 +27,6 @@ import java.util.Map;
  */
 public class Accelerometer extends Activity implements SensorEventListener{
 
-    String numbr = "0857603133";
     private float lastX, lastY, lastZ;
 
     private SensorManager sensorManager;
@@ -59,7 +58,8 @@ public class Accelerometer extends Activity implements SensorEventListener{
 
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-            vibrateThreshold = accelerometer.getMaximumRange() / 1.1f;
+            float sensitivity_val = readSensitivityValtoFile();
+            vibrateThreshold = accelerometer.getMaximumRange() / sensitivity_val;
         } else {
             // No Accelerometer
         }
@@ -162,7 +162,6 @@ public class Accelerometer extends Activity implements SensorEventListener{
                 for(int i =0; i < contactsArray.length; i++){
                     sms.sendSMS((contactsArray[i]), message);
                 }
-               // sms.sendSMS(numbr, message);
             }
         }
     }
@@ -236,10 +235,27 @@ public class Accelerometer extends Activity implements SensorEventListener{
             return null;
         }
     }
+    private float readSensitivityValtoFile(){
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new
+                    File(getFilesDir() + File.separator + "FileSensitivitySettings.txt")));
+            String sensitivity_val;
+            sensitivity_val = bufferedReader.readLine();
+            System.out.println("val from file = " + sensitivity_val);
+            bufferedReader.close();
+
+            return Float.parseFloat(sensitivity_val);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            return -1;
+        }
+    }
 
     private void GpsToServer(int userid,double latitude,double longitude)throws Exception{
 
-        String url = "http://140.203.204.78/niallcsit/writeGPSToFile.php";
+        String url = "http://140.203.204.78/niallcsit/InsertGPSToDB.php";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

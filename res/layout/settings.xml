@@ -17,7 +17,7 @@
             android:inputType="phone"
             android:ems="10"
             android:id="@+id/phoneNumberEnter"
-            android:text="50505059" android:layout_below="@+id/btnWifiOn" android:layout_alignLeft="@+id/phoneNumberEnter2"
+            android:layout_below="@+id/btnWifiOn" android:layout_alignLeft="@+id/phoneNumberEnter2"
             android:layout_marginTop="45dp"/>
     <Button
             style="?android:attr/buttonStyleSmall"
@@ -25,8 +25,8 @@
             android:layout_height="wrap_content"
             android:text="Save Numbers"
             android:id="@+id/btnSaveNumber1"
-            android:layout_below="@+id/phoneNumberEnter2" android:layout_centerHorizontal="true"
-            android:layout_marginTop="61dp"/>
+            android:layout_marginTop="26dp" android:layout_below="@+id/phoneNumberEnter2"
+            android:layout_centerHorizontal="true"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,5 +34,28 @@
             android:ems="10"
             android:id="@+id/phoneNumberEnter2"
             android:layout_below="@+id/phoneNumberEnter" android:layout_alignRight="@+id/btnWifiOn"/>
+    <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/yourRadioGroup" android:weightSum="1" android:orientation="vertical"
+            android:layout_below="@+id/btnSaveNumber1" android:layout_alignLeft="@+id/btnSaveNumber1"
+            android:layout_alignRight="@+id/phoneNumberEnter2">
+        <RadioButton
+                android:layout_width="73dp"
+                android:layout_height="wrap_content"
+                android:text="low"
+                android:id="@+id/radioButton1" android:layout_gravity="center_horizontal" android:checked="false"
+        />
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mid"
+                android:id="@+id/radioButton2" android:layout_gravity="center_horizontal" android:checked="false"/>
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="high"
+                android:id="@+id/radioButton3" android:layout_gravity="center_horizontal" android:checked="false"/>
+    </RadioGroup>
 
 </RelativeLayout>

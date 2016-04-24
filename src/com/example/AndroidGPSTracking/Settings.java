@@ -1,16 +1,10 @@
 package com.example.AndroidGPSTracking;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.location.LocationManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.io.*;
 
@@ -98,7 +92,43 @@ public class Settings extends Activity {
                 }
             }
         });
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.yourRadioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
+                float sensitivity_val = 1.1f;
 
+
+                    if(checkedId == R.id.radioButton1) {
+                        sensitivity_val = 1;
+                        Toast.makeText(getApplicationContext(), "Low Sensitivity Setting", Toast.LENGTH_SHORT).show();
+
+                    } else if(checkedId == R.id.radioButton2) {
+                        Toast.makeText(getApplicationContext(), "Medium Sensitivity Setting", Toast.LENGTH_SHORT).show();
+                        sensitivity_val = 1.5f;
+
+                    }
+                    else if(checkedId == R.id.radioButton3) {
+                        Toast.makeText(getApplicationContext(), "High Sensitivity Setting", Toast.LENGTH_SHORT).show();
+                        sensitivity_val = 2;
+                    }
+                writeSensitivityValtoFile(sensitivity_val, "FileSensitivitySettings.txt");
+                }
+            });
+
+    }
+    private void writeSensitivityValtoFile( float sensitivity_val, String filename){
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new
+                                    File(getFilesDir() + File.separator + filename)));
+            bufferedWriter.write(""+sensitivity_val);
+            bufferedWriter.close();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 
