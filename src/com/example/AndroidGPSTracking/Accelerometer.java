@@ -142,7 +142,7 @@ public class Accelerometer extends Activity implements SensorEventListener{
                     String[] contactsArray = readNumbersFromFile();
                     String message = "User has fallen at location: \nLat: " + latitude + "\nLong: " + longitude;
                     for(int i =0; i < contactsArray.length; i++){
-                        //sms.sendSMS((contactsArray[i]), message);
+                        sms.sendSMS((contactsArray[i]), message);
                     }
                     System.out.println("Sending coordinates via http POST request");
 
@@ -156,7 +156,7 @@ public class Accelerometer extends Activity implements SensorEventListener{
                 String[] contactsArray = readNumbersFromFile();
                 String message = "User has fallen at location unavailable";
                 for(int i =0; i < contactsArray.length; i++){
-                    //sms.sendSMS((contactsArray[i]), message);
+                    sms.sendSMS((contactsArray[i]), message);
                 }
             }
             //initialise resid to the sound file beep2.mp3
