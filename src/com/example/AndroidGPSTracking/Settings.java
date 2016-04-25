@@ -19,14 +19,12 @@ public class Settings extends Activity {
     EditText phoneNumberEnter;
     EditText phoneNumberEnter2;
     Button btnSaveNumber1;
-    //SharedPreferences prefs = getSharedPreferences("com.example.AndroidGPSTracking", Context.MODE_PRIVATE);
-    //String phoneNumberKey = "com.example.AndroidGPSTracking.phoneNumber";
+    Button btnShowContacts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-
 
         btnWifiOn = (Button) findViewById(R.id.btnWifiOn);
         btnWifiOn.setOnClickListener(new View.OnClickListener() {
@@ -76,19 +74,9 @@ public class Settings extends Activity {
                             File(getFilesDir()+ File.separator+"MyFile.txt")));
                     bufferedWriter.write(fileContents.toString());
                     bufferedWriter.close();
-
-
-//                    BufferedReader bufferedReader = new BufferedReader(new FileReader(new
-//                            File(getFilesDir()+File.separator+"MyFile.txt")));
-//                    String read;
-//
-//                    while((read = bufferedReader.readLine()) != null){
-//                        System.out.println("nums from file = "  + read);
-//                    }
-//                    bufferedReader.close();
                 }
                 catch(Exception e){
-
+                    System.out.println(e.getMessage());
                 }
             }
         });
@@ -99,8 +87,6 @@ public class Settings extends Activity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // find which radio button is selected
                 float sensitivity_val = 1.1f;
-
-
                     if(checkedId == R.id.radioButton1) {
                         sensitivity_val = 1;
                         Toast.makeText(getApplicationContext(), "Low Sensitivity Setting", Toast.LENGTH_SHORT).show();
@@ -117,7 +103,27 @@ public class Settings extends Activity {
                 writeSensitivityValtoFile(sensitivity_val, "FileSensitivitySettings.txt");
                 }
             });
+        btnShowContacts = (Button) findViewById(R.id.btnShowContacts);
+        btnShowContacts.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View arg0) {
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(new
+                            File(getFilesDir() + File.separator + "MyFile.txt")));
+                    String read;
 
+                    while ((read = bufferedReader.readLine()) != null) {
+                        System.out.println("nums from file = " + read);
+                        Toast.makeText(getApplicationContext(), "Saved contacts " + read, Toast.LENGTH_LONG).show();
+                    }
+                    bufferedReader.close();
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
     }
     private void writeSensitivityValtoFile( float sensitivity_val, String filename){
         try {

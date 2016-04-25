@@ -2,14 +2,12 @@ package com.example.AndroidGPSTracking;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.os.Vibrator;
 import android.widget.Toast;
@@ -18,7 +16,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -125,7 +122,6 @@ public class Accelerometer extends Activity implements SensorEventListener{
         lastZ = event.values[2];
 
         vibrate();
-
     }
 
     // if the change in the accelerometer value is big enough, then vibrate
@@ -146,7 +142,7 @@ public class Accelerometer extends Activity implements SensorEventListener{
                     String[] contactsArray = readNumbersFromFile();
                     String message = "User has fallen at location: \nLat: " + latitude + "\nLong: " + longitude;
                     for(int i =0; i < contactsArray.length; i++){
-                        sms.sendSMS((contactsArray[i]), message);
+                        //sms.sendSMS((contactsArray[i]), message);
                     }
                     System.out.println("Sending coordinates via http POST request");
 
@@ -160,10 +156,18 @@ public class Accelerometer extends Activity implements SensorEventListener{
                 String[] contactsArray = readNumbersFromFile();
                 String message = "User has fallen at location unavailable";
                 for(int i =0; i < contactsArray.length; i++){
-                    sms.sendSMS((contactsArray[i]), message);
+                    //sms.sendSMS((contactsArray[i]), message);
                 }
             }
+            //initialise resid to the sound file beep2.mp3
+            int resId;
+            resId = R.raw.beep2;
+            //Create the media player
+            MediaPlayer mp= MediaPlayer.create(this,resId);
+            //start the media player
+            mp.start();
         }
+
     }
 
     public void displayCleanValues() {
